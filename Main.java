@@ -61,11 +61,7 @@ public class Main {
                             break;
                     }
                     MagoDeLasPalabras juego = new MagoDeLasPalabras(numJugadores, modalidad);
-                    juego.iniciarJuego();
-                    juego.crearInterfaz();
-//                    juego.iniciarJuego();
-//                    InterfazGrafica interfazGrafica = new InterfazGrafica(numJugadores,modalidad);
-//                    interfazGrafica.setLocationRelativeTo(ventana);
+                    juego.flujoInterfaz();
                 }
             }
         });
