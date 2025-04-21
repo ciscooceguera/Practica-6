@@ -102,7 +102,8 @@ public class MagoDeLasPalabras extends JFrame {
         salir.setEnabled(false);
 
         // imagen
-        ImageIcon mago = new ImageIcon("C:\\Users\\joser\\IdeaProjects\\Practica-6\\magoJuego.png");
+
+        ImageIcon mago = new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\PRACTICA-6\\magoJuego.png");
         imagen = new JLabel(mago);
         imagen.setBounds(0, 0, mago.getIconWidth(), mago.getIconHeight());
 
@@ -190,8 +191,9 @@ public class MagoDeLasPalabras extends JFrame {
 
         AtomicInteger flagJugadorAdivinoPalabra = new AtomicInteger();
         // adivinar
+
         adivinarPalabra.addActionListener(e -> {
-            String palabraIngresada = campoPalabra.getText();
+            String palabraIngresada = campoPalabra.getText().trim();
             palabra = new Palabra(palabraIngresada,modalidad);
             boolean validacionDeIntento = evaluarSiSeUsaronSoloLasLetrasPermitidas();
             if (!validacionDeIntento){
@@ -241,15 +243,18 @@ public class MagoDeLasPalabras extends JFrame {
                     switch (yesNoResponse){
                         case JOptionPane.YES_OPTION:
                             if (!validarPalabraEnArchivoTXT()){
-                                agregarPalabraADiccionario(palabra);
-                                palabrasUsadasEnElTurno.add(palabra);
-                                jugadorPalabrasUsadas.put(palabra, turno - 1);
-                                JOptionPane.showMessageDialog(null,"\nPuntaje de la palabra: " + palabra.obtejerPuntajePalabra());
-                                int puntajeTemp = jugadores.get(turno-1);
-                                jugadores.remove(turno - 1);
-                                puntajeTemp+=palabra.obtejerPuntajePalabra();
-                                jugadores.put(turno - 1, puntajeTemp);
-                                palabrasUsadas.setText(getPalabrasUsadas());
+                                if (!validarPalabraEnHashSet()) {
+                                    agregarPalabraADiccionario(palabra);
+                                    palabrasMap.put(palabra,palabra.obtejerPuntajePalabra());
+                                    palabrasUsadasEnElTurno.add(palabra);
+                                    jugadorPalabrasUsadas.put(palabra, turno - 1);
+                                    JOptionPane.showMessageDialog(null, "\nPuntaje de la palabra: " + palabra.obtejerPuntajePalabra());
+                                    int puntajeTemp = jugadores.get(turno - 1);
+                                    jugadores.remove(turno - 1);
+                                    puntajeTemp += palabra.obtejerPuntajePalabra();
+                                    jugadores.put(turno - 1, puntajeTemp);
+                                    palabrasUsadas.setText(getPalabrasUsadas());
+                                }
                             }
                             break;
                         case JOptionPane.NO_OPTION:
@@ -535,19 +540,27 @@ public class MagoDeLasPalabras extends JFrame {
         palabrasMap.clear();
         String nombreArchivo = "";
         if(modalidad.equals("Experto")){
-            nombreArchivo ="C:\\Users\\joser\\IdeaProjects\\Practica-6\\palabras.txt";
+            /*nombreArchivo ="C:\\Users\\joser\\IdeaProjects\\Practica-6\\palabras.txt";
         } else if(modalidad.equals("Regular")){
             nombreArchivo ="C:\\Users\\joser\\IdeaProjects\\Practica-6\\palabrasNoAcentos.txt";
+*/
+            nombreArchivo ="C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica-6\\palabras.txt";
+        } else {
+            nombreArchivo ="C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica-6\\palabrasNoAcentos.txt";
         }
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             String palabra;
             Integer puntaje;
+
             while ((palabra = br.readLine()) != null) {
                 //  System.out.println(palabra);
-                Palabra p = new Palabra(palabra,modalidad);
-                puntaje=p.obtejerPuntajePalabra();
-                palabrasMap.put(p, puntaje);
+                if (!palabra.isEmpty() && !palabra.equals("")) {
+                    Palabra p = new Palabra(palabra, modalidad);
+                    puntaje = p.obtejerPuntajePalabra();
+                    palabrasMap.put(p, puntaje);
+                }
             }
+
         } catch (IOException e) {
             System.err.println("\nError al leer el archivo: " + e.getMessage());
         }
@@ -575,9 +588,14 @@ public class MagoDeLasPalabras extends JFrame {
         String nombreArchivo;
         String palabraAAgregar = palabra.toString();
         if(modalidad.equals("Experto")){
+/*
             nombreArchivo ="C:\\Users\\joser\\IdeaProjects\\Practica-6\\palabras.txt";
         } else {
             nombreArchivo = "C:\\Users\\joser\\IdeaProjects\\Practica-6\\palabrasNoAcentos.txt";
+=======*/
+            nombreArchivo ="C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\PRACTICA-6\\palabras.txt";
+        } else {
+            nombreArchivo ="C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\PRACTICA-6\\palabrasNoAcentos.txt";
         }
         try{
             FileWriter fw = new FileWriter(nombreArchivo, true);
