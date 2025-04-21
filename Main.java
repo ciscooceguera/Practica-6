@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,7 +27,7 @@ public class Main {
         ventana.setVisible(true);
 
 
-        ImageIcon mago = new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica-6\\magoInicio.png");
+        ImageIcon mago = new ImageIcon("C:\\Users\\joser\\IdeaProjects\\Practica-6\\magoInicio.png");
         JLabel imagen = new JLabel(mago);
         imagen.setBounds(0, 0, mago.getIconWidth(), mago.getIconHeight());
         ventana.add(imagen);
