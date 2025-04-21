@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,7 +20,7 @@ public class  MagoDeLasPalabras extends JFrame {
     private JTextArea turnoYRonda;
     private JTextField campoPalabra;
     private JTextArea areaPuntajes;
-    private JButton adivinarPalabra, pasar;
+    private JButton adivinarPalabra, pasar, salir;
     private JLabel imagen;
 
     // atributos
@@ -96,6 +98,9 @@ public class  MagoDeLasPalabras extends JFrame {
         adivinarPalabra.setPreferredSize(new Dimension(200, 50));
         pasar = new JButton("Pasar Turno");
         pasar.setPreferredSize(new Dimension(200, 50));
+        salir = new JButton("Salir");
+        salir.setPreferredSize(new Dimension(200, 50));
+        salir.setEnabled(false);
 
         // imagen
         ImageIcon mago = new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\PRACTICA_6\\magoJuego.png");
@@ -150,6 +155,7 @@ public class  MagoDeLasPalabras extends JFrame {
         panelBotones.setPreferredSize(new Dimension(750, 70)); // Ajusta la altura de los botones
         panelBotones.add(adivinarPalabra);
         panelBotones.add(pasar);
+        panelBotones.add(salir);
         // añado los paneles intenros
         sur.add(campoPalabra, BorderLayout.NORTH);
         sur.add(panelBotones, BorderLayout.SOUTH);
@@ -166,7 +172,7 @@ public class  MagoDeLasPalabras extends JFrame {
     }
     public String getTurnoYRonda(){
         String mensaje = "";
-        mensaje += "Ronda: \n " + contadorRonda + "\n\n" + "Turno: \n" + turno;
+        mensaje += "Ronda: \n " + (contadorRonda+1) + "\n\n" + "Turno: \n" + turno;
         return mensaje;
     }
     // inicializo puntajes en 0s
@@ -272,6 +278,10 @@ public class  MagoDeLasPalabras extends JFrame {
             jugadores.put(turno - 1, puntajeTemp);
             areaPuntajes.setText(getStringPuntajes());
             cambiarTurno();
+        });
+        // salir
+        salir.addActionListener(e-> {
+            this.dispose();
         });
     }
     public String getPalabrasUsadas(){
@@ -408,7 +418,7 @@ public class  MagoDeLasPalabras extends JFrame {
                 }
             }
         }
-        mostrarGanador();
+        //mostrarGanador();
     }
     //Validar si palabra existe en las palabras utilizadas
     public boolean validarPalabraEnHashSet(){
@@ -423,7 +433,9 @@ public class  MagoDeLasPalabras extends JFrame {
         }
     }
     // mostrar ganador
-    public void mostrarGanador(){
+    public String mostrarGanador(){
+        String ganadorMsg = "";
+        int puntajeWin = 0;
         ArrayList<Integer> jugadoresGanadores = new ArrayList<>();
         int ganador = 0;
         for (int i = 0; i<numJugadores-1; i++){
@@ -431,21 +443,25 @@ public class  MagoDeLasPalabras extends JFrame {
             int jugadorSig = jugadores.get(i+1);
             if (jugador<jugadorSig){
                 ganador = i+1;
+                puntajeWin = jugadorSig;
             }else if (jugador==jugadorSig){
-                jugadoresGanadores.add(ganador);
-                jugadoresGanadores.add(ganador+1);
-                ganador = -2;
+                ganador = -2; //empate
+                puntajeWin = jugadorSig;
             }
         }
+
         ganador+=1;
         if (ganador==-1){
-            System.out.println("\nEmpate! Ganadores:");
-            for (Integer jugadoresGanadore : jugadoresGanadores) {
-                System.out.println("\nJugador " + (jugadoresGanadore+1));
+            ganadorMsg+="\nEmpate! \n\nGanadores:\n\n";
+            for (int i=0; i<jugadores.size(); i++){
+                if (jugadores.get(i) == puntajeWin){
+                    ganadorMsg += "Jugador " + (i+1) + ": " + jugadores.get(i) + "\n";
+                }
             }
         }else {
-            System.out.println("\nHa ganado el jugador " + ganador);
+            ganadorMsg+="\nHa ganado el jugador " + ganador;
         }
+        return ganadorMsg;
     }
     // encontrar idx palabra en hasmap
     public int encontrarValuePalabraEnHash(){
@@ -492,6 +508,10 @@ public class  MagoDeLasPalabras extends JFrame {
     public void cambiarTurno(){
         if (numPaso.size() == numJugadores) {
             contadorRonda++;
+            if (contadorRonda != 3) {
+                generarLetras();
+                letrasTurno.setText(letras.toString());
+            }
             jugadorPalabrasUsadas.clear();
             palabrasUsadasEnElTurno.clear();
             numPaso.clear();
@@ -500,7 +520,17 @@ public class  MagoDeLasPalabras extends JFrame {
         if (numPaso.contains(turno-1)){
             cambiarTurno();
         }
-        turnoYRonda.setText(getTurnoYRonda());
+        if (contadorRonda == 3) {
+            turnoYRonda.setText(mostrarGanador());
+            inhabilitarBotones();
+        }else {
+            turnoYRonda.setText(getTurnoYRonda());
+        }
+    }
+    public void inhabilitarBotones(){
+        adivinarPalabra.setEnabled(false);
+        pasar.setEnabled(false);
+        salir.setEnabled(true);
     }
     public void cargarPalabras(){
         palabrasMap.clear();
