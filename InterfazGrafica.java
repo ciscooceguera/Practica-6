@@ -121,7 +121,7 @@ public class InterfazGrafica extends JFrame {
     }
 
     private void ejecucionDeEventos() {
-
+        juego.iniciarJuego();
         // adivinar
         adivinarPalabra.addActionListener(e -> {
             String palabraIngresada = campoPalabra.getText();

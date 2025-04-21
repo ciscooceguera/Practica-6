@@ -59,10 +59,9 @@ public class Main {
                             modalidad = "Experto";
                             break;
                     }
-                    /*MagoDeLasPalabras juego = new MagoDeLasPalabras(numJugadores, modalidad);
-                    juego.iniciarJuego();
-                    */
-                    InterfazGrafica interfazGrafica = new InterfazGrafica(numJugadores,modalidad);
+                    MagoDeLasPalabras juego = new MagoDeLasPalabras(numJugadores, modalidad);
+                    juego.flujoInterfaz();
+
                 }
             }
         });
