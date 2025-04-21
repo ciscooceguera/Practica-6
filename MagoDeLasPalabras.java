@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
@@ -104,12 +105,31 @@ public class  MagoDeLasPalabras {
                                 }
                             } else if (!palabra.toString().equals("1")) {
                                 System.out.println("\nPalabra incorrecta ");
-                                int puntajeTemp = jugadores.get(turno - 1);
-                                // no adivinó
-                                puntajeTemp -= 5;
-                                jugadores.remove(turno - 1);
-                                jugadores.put(turno - 1, puntajeTemp);
-                                // sí adivinó
+                                System.out.println("\n¿Quieres agregar la palabra al diccionario? 1. Si | 2. No");
+                                Scanner sc = new Scanner(System.in);
+                                int agregar = sc.nextInt();
+                                switch (agregar) {
+                                    case 1:
+                                        opcTurno = 2;
+                                        agregarPalabraADiccionario(palabra);
+                                        palabrasUsadasEnElTurno.add(palabra);
+                                        jugadorPalabrasUsadas.put(palabra, turno - 1);
+                                        System.out.println("\nPuntaje de la palabra: " + palabra.obtejerPuntajePalabra());
+                                        flagJugadorAdivinoPalabra = 1;
+                                        int puntajeTemp = jugadores.get(turno-1);
+                                        jugadores.remove(turno - 1);
+                                        puntajeTemp+=palabra.obtejerPuntajePalabra();
+                                        jugadores.put(turno - 1, puntajeTemp);
+                                        break;
+                                    case 2:
+                                        puntajeTemp = jugadores.get(turno - 1);
+                                        // no adivinó
+                                        puntajeTemp -= 5;
+                                        jugadores.remove(turno - 1);
+                                        jugadores.put(turno - 1, puntajeTemp);
+                                        // sí adivinó
+                                        break;
+                                }
                                 mostrarPuntajes();
                                 cambiarTurno();
                             }
@@ -267,6 +287,24 @@ public class  MagoDeLasPalabras {
             Letra letra = new Letra(toma, modalidad);
             letras.add(letra);
 
+        }
+    }
+
+    public void agregarPalabraADiccionario(Palabra palabra){
+        String nombreArchivo;
+        String palabraAAgregar = palabra.toString();
+        if(modalidad.equals("Experto")){
+            nombreArchivo ="C:\\Users\\joser\\IdeaProjects\\Practica-6\\palabras.txt";
+        } else {
+            nombreArchivo ="C:\\Users\\joser\\IdeaProjects\\Practica-6\\palabrasNoAcentos.txt";
+        }
+        try{
+            FileWriter fw = new FileWriter(nombreArchivo, true);
+            fw.write("\n"+palabraAAgregar);
+            fw.close();
+            System.out.println("Palabra agregada al diccionario!");
+        } catch (IOException e) {
+            System.out.println("\nError al escribir en el archivo: " + e.getMessage());
         }
     }
 
