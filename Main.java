@@ -28,7 +28,7 @@ public class Main {
         ventana.setLayout(null);
         ventana.setVisible(true);
 
-        ImageIcon mago = new ImageIcon("C:\\Users\\joser\\IdeaProjects\\Practica-6\\magoInicio.png");
+        ImageIcon mago = new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica_6\\magoInicio.png");
         JLabel imagen = new JLabel(mago);
         imagen.setBounds(0, 0, mago.getIconWidth(), mago.getIconHeight());
 
@@ -59,8 +59,10 @@ public class Main {
                             modalidad = "Experto";
                             break;
                     }
-                    MagoDeLasPalabras juego = new MagoDeLasPalabras(numJugadores, modalidad);
+                    /*MagoDeLasPalabras juego = new MagoDeLasPalabras(numJugadores, modalidad);
                     juego.iniciarJuego();
+                    */
+                    InterfazGrafica interfazGrafica = new InterfazGrafica(numJugadores,modalidad);
                 }
             }
         });

@@ -254,9 +254,9 @@ public class  MagoDeLasPalabras {
         palabrasMap.clear();
         String nombreArchivo = "";
         if(modalidad.equals("Experto")){
-            nombreArchivo ="C:\\Users\\joser\\IdeaProjects\\Practica-6\\palabras.txt";
+            nombreArchivo ="C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\PRACTICA_6\\palabras.txt";
         } else {
-            nombreArchivo ="C:\\Users\\joser\\IdeaProjects\\Practica-6\\palabrasNoAcentos.txt";
+            nombreArchivo ="C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\PRACTICA_6\\palabrasNoAcentos.txt";
         }
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             String palabra;
