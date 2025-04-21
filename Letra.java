@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
@@ -109,6 +110,47 @@ public class Letra {
     }
     public int hashCode() {
         return Objects.hash(letra);
+    }
+
+    public void dibujarLetra(Character letra){
+        Icon letraPantalla = null;
+        switch(letra){
+            case 'a': letraPantalla = new ImageIcon("src/Letras/letra_a.png");
+            case 'b': letraPantalla = new ImageIcon("src/Letras/letra_b.png");
+            case 'c': letraPantalla = new ImageIcon("src/Letras/letra_c.png");
+            case 'd': letraPantalla = new ImageIcon("src/Letras/letra_d.png");
+            case 'e': letraPantalla = new ImageIcon("src/Letras/letra_e.png");
+            case 'f': letraPantalla = new ImageIcon("src/Letras/letra_f.png");
+            case 'g': letraPantalla = new ImageIcon("src/Letras/letra_g.png");
+            case 'h': letraPantalla = new ImageIcon("src/Letras/letra_h.png");
+            case 'i': letraPantalla = new ImageIcon("src/Letras/letra_i.png");
+            case 'j': letraPantalla = new ImageIcon("src/Letras/letra_j.png");
+            case 'k': letraPantalla = new ImageIcon("src/Letras/letra_k.png");
+            case 'l': letraPantalla = new ImageIcon("src/Letras/letra_l.png");
+            case 'm': letraPantalla = new ImageIcon("src/Letras/letra_m.png");
+            case 'n': letraPantalla = new ImageIcon("src/Letras/letra_n.png");
+            case 'ñ': letraPantalla = new ImageIcon("src/Letras/letra_ñ.png");
+            case 'o': letraPantalla = new ImageIcon("src/Letras/letra_o.png");
+            case 'p': letraPantalla = new ImageIcon("src/Letras/letra_p.png");
+            case 'q': letraPantalla = new ImageIcon("src/Letras/letra_q.png");
+            case 'r': letraPantalla = new ImageIcon("src/Letras/letra_r.png");
+            case 's': letraPantalla = new ImageIcon("src/Letras/letra_s.png");
+            case 't': letraPantalla = new ImageIcon("src/Letras/letra_t.png");
+            case 'u': letraPantalla = new ImageIcon("src/Letras/letra_u.png");
+            case 'v': letraPantalla = new ImageIcon("src/Letras/letra_v.png");
+            case 'w': letraPantalla = new ImageIcon("src/Letras/letra_w.png");
+            case 'x': letraPantalla = new ImageIcon("src/Letras/letra_x.png");
+            case 'y': letraPantalla = new ImageIcon("src/Letras/letra_y.png");
+            case 'z': letraPantalla = new ImageIcon("src/Letras/letra_z.png");
+            case 'á': letraPantalla = new ImageIcon("src/Letras/letra_a_acento.png");
+            case 'é': letraPantalla = new ImageIcon("src/Letras/letra_e_acento.png");
+            case 'í': letraPantalla = new ImageIcon("src/Letras/letra_i_acento.png");
+            case 'ó': letraPantalla = new ImageIcon("src/Letras/letra_o_acento.png");
+            case 'ú': letraPantalla = new ImageIcon("src/Letras/letra_u_acento.png");
+        }
+        JLabel label = new JLabel();
+        label.setIcon(letraPantalla);
+        label.show();
     }
     //
 }

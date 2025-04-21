@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class MagoDeLasPalabras {
+public class  MagoDeLasPalabras {
     // atributos
     private HashSet<Integer> numPaso;
     private int turno, contadorRonda,numJugadores;
