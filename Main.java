@@ -53,10 +53,10 @@ public class Main {
                     String modalidad = "";
                     switch (modalidadOpcion) {
                         case 0:
-
+                            modalidad = "Regular";
                             break;
                         case 1:
-
+                            modalidad = "Experto";
                             break;
                     }
                     MagoDeLasPalabras juego = new MagoDeLasPalabras(numJugadores, modalidad);
