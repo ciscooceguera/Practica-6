@@ -9,6 +9,7 @@ public class Palabra {
     // constructor, recibe palabra
     public Palabra(String palabra, String modalidad){
 
+
         if (palabra == null || palabra.isEmpty()) {
             throw new IllegalArgumentException("La palabra no puede ser nula o vacía.");
         }

@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class  MagoDeLasPalabras extends JFrame {
+public class MagoDeLasPalabras extends JFrame {
     // interfaz grafica
     // juego
     private MagoDeLasPalabras juego;
@@ -37,8 +37,6 @@ public class  MagoDeLasPalabras extends JFrame {
     public MagoDeLasPalabras(int numJugadores, String modalidad){
         // interfaz grafica
         super("El Mago de las Palabras");
-
-
         // siempre inicia el jugador 1
         turno = 1;
         numPaso = new HashSet<>();
@@ -52,12 +50,12 @@ public class  MagoDeLasPalabras extends JFrame {
         palabrasUsadasEnElTurno = new HashSet<>();
         jugadorPalabrasUsadas = new HashMap<>();
         contadorRonda = 0;
-
         //
         inicializarComponentes();
         configurarVentana();
         setLocationRelativeTo(null);
     }
+
     // metodos interfaz grafica
     // inicializa botones, campos de texto, etc.
     private void inicializarComponentes() {
@@ -104,6 +102,7 @@ public class  MagoDeLasPalabras extends JFrame {
         salir.setEnabled(false);
 
         // imagen
+
         ImageIcon mago = new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\PRACTICA-6\\magoJuego.png");
         imagen = new JLabel(mago);
         imagen.setBounds(0, 0, mago.getIconWidth(), mago.getIconHeight());
@@ -541,6 +540,10 @@ public class  MagoDeLasPalabras extends JFrame {
         palabrasMap.clear();
         String nombreArchivo = "";
         if(modalidad.equals("Experto")){
+            /*nombreArchivo ="C:\\Users\\joser\\IdeaProjects\\Practica-6\\palabras.txt";
+        } else if(modalidad.equals("Regular")){
+            nombreArchivo ="C:\\Users\\joser\\IdeaProjects\\Practica-6\\palabrasNoAcentos.txt";
+*/
             nombreArchivo ="C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica-6\\palabras.txt";
         } else {
             nombreArchivo ="C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica-6\\palabrasNoAcentos.txt";
@@ -585,6 +588,11 @@ public class  MagoDeLasPalabras extends JFrame {
         String nombreArchivo;
         String palabraAAgregar = palabra.toString();
         if(modalidad.equals("Experto")){
+/*
+            nombreArchivo ="C:\\Users\\joser\\IdeaProjects\\Practica-6\\palabras.txt";
+        } else {
+            nombreArchivo = "C:\\Users\\joser\\IdeaProjects\\Practica-6\\palabrasNoAcentos.txt";
+=======*/
             nombreArchivo ="C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\PRACTICA-6\\palabras.txt";
         } else {
             nombreArchivo ="C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\PRACTICA-6\\palabrasNoAcentos.txt";

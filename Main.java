@@ -28,9 +28,11 @@ public class Main {
         ventana.setLayout(null);
         ventana.setVisible(true);
 
+
         ImageIcon mago = new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica-6\\magoInicio.png");
         JLabel imagen = new JLabel(mago);
         imagen.setBounds(0, 0, mago.getIconWidth(), mago.getIconHeight());
+        ventana.add(imagen);
 
         jugar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -61,11 +63,9 @@ public class Main {
                     }
                     MagoDeLasPalabras juego = new MagoDeLasPalabras(numJugadores, modalidad);
                     juego.flujoInterfaz();
-
                 }
             }
         });
-        ventana.add(imagen);
 
         reglas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
